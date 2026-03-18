@@ -3,43 +3,43 @@
     [
         {
             "id": 1,
-            "name": "Asien",
+            "continentName": "Asien",
             "description": "Världens största världsdel till både yta och befolkning. Här finns jordens högsta punkt (Mount Everest) och den lägsta (Döda havet). Det är en kontinent med extremt varierande klimat, kultur och natur.",
             "image": "images/asien.png"
         },
         {
             "id": 2,
-            "name": "Afrika",
+            "continentName": "Afrika",
             "description": "Världens näst största världsdel. Känd för sin rika biologiska mångfald, den stora öknen Sahara och världens längsta flod, Nilen. Afrika upplever för närvarande en snabb ekonomisk utveckling och frihandel.",
             "image": "images/afrika.png"
         },
         {
             "id": 3,
-            "name": "Nordamerika",
+            "continentName": "Nordamerika",
             "description": "Omfattar länderna Kanada, USA och Mexiko samt Centralamerika och Västindien. Geografin sträcker sig från arktiska områden i norr till tropiska områden i söder.",
             "image": "images/nordamerika.png"
         },
         {
             "id": 4,
-            "name": "Sydamerika",
+            "continentName": "Sydamerika",
             "description": "En världsdel som till stor del täcks av Amazonas regnskog och bergskedjan Anderna. Det är känt för en stor biologisk mångfald och en rik kulturhistoria.",
             "image": "images/sydamerika.png"
         },
         {
             "id": 5,
-            "name": "Europa",
+            "continentName": "Europa",
             "description": "En världsdel med en komplex historia och hög befolkningstäthet. Europa har generellt ett tempererat klimat och består av cirka 44 länder.",
             "image": "images/europa.jpg"
         },
         {
             "id": 6,
-            "name": "Oceanien",
+            "continentName": "Oceanien",
             "description": " Världens minsta världsdel till ytan, vilken till stor del utgörs av Australien, samt öområdena Melanesien, Mikronesien och Polynesien.",
             "image": "images/oceanien.png"
         },
         {
             "id": 7,
-            "name": "Antarktis",
+            "continentName": "Antarktis",
             "description": " Området runt Sydpolen. Det är en istäckt kontinent där 98 procent av ytan är täckt av is. Det är den kallaste, torraste och blåsigaste platsen på jorden, utan permanent bofolkning.",
             "image": "images/antarktis.png"
         }
@@ -48,14 +48,14 @@
     "countries": [
         {
             "id": 1,
-            "name": "Spanien",
+            "countryName": "Spanien",
             "yearVisited": 2021,
             "businessOrPleasure": "business",
             "continentId": 5
         },
         {
             "id": 2,
-            "name": "Thailand",
+            "countryName": "Thailand",
             "yearVisited": 2017,
             "businessOrPleasure": "pleasure",
             "continentId": 1

@@ -23,7 +23,6 @@ header h1 {
     text-shadow: 1px 1px 3px black;
 }
 
-}
 main {
     display: flex;
     flex-direction: column;
