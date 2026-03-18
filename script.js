@@ -33,6 +33,7 @@ function renderCountries (country){
         
         //Gör en div för kontinent-info
         const continentInfo = document.createElement("div");
+        continentInfo.classList.add("continentInfo");
         const continentPresentation = document.createElement("p");
         //Delar upp "Tillhör: " och namnet på världsdelen för att göra endast världsdelen klickbar
         //för att komma till information om världsdelen
@@ -51,6 +52,7 @@ function renderCountries (country){
         
         //Behållare för knappar + knappar för redigering/ta bort
         const buttonSection = document.createElement("div");
+        buttonSection.classList.add("buttonSection");
         const editButton = document.createElement("button");
         editButton.classList.add("editButton");
         editButton.textContent = "Redigera";
