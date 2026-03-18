@@ -1,24 +1,5 @@
-const showCountriesDiv = document.querySelector(".showCountriesDiv");
-
-async function getCountries () {
-    const response = await fetch ("http://localhost:3000/countries");
-    const countries = await response.json();
-    return countries;
-}
-
-//Målar ut alla sparade resemål
-async function showAllCountries () {
-    //Får arrayen countries
-    const countries = await getCountries();
-
-    //Loopa igenom hela arrayen
-    countries.forEach((country) =>{
-        renderCountries(country);
-       
-    })
-}
-
-function renderCountries (country){
+export function renderCountry (country){
+    const showCountriesDiv = document.querySelector(".showCountriesDiv");
     //Skapa "kort" för varje resa
         const countryCard = document.createElement("div");
         countryCard.classList.add("countryCard");
@@ -57,14 +38,14 @@ function renderCountries (country){
         editButton.classList.add("editButton");
         editButton.textContent = "Redigera";
         editButton.addEventListener("click", () => {
-            editCard(id);
+            editCard(country.id);
         })
 
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("deleteButton");
         deleteButton.textContent = "Ta bort";
         deleteButton.addEventListener("click", () => {
-            deleteCard(id);
+            deleteCard(country.id);
         });
 
         //Lägg till knapparna i behållaren
@@ -119,4 +100,3 @@ function renderCountries (country){
         //Lägger till kortet i diven för alla länder
         showCountriesDiv.appendChild(countryCard);
     }
-showAllCountries();
