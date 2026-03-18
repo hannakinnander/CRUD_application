@@ -49,8 +49,28 @@ function renderCountries (country){
         continentInfo.appendChild(continentPresentation);
         continentInfo.appendChild(continentName);
         
+        //Behållare för knappar + knappar för redigering/ta bort
+        const buttonSection = document.createElement("div");
+        const editButton = document.createElement("button");
+        editButton.classList.add("editButton");
+        editButton.textContent = "Redigera";
+        editButton.addEventListener("click", () => {
+            editCard(id);
+        })
 
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("deleteButton");
+        deleteButton.textContent = "Ta bort";
+        deleteButton.addEventListener("click", () => {
+            deleteCard(id);
+        });
 
+        //Lägg till knapparna i behållaren
+        buttonSection.appendChild(editButton);
+        buttonSection.appendChild(deleteButton);
+        
+        //En switch beroende på vilken kontinent, för stylling och vad
+        //det ska stå i kortet
         const dependingOnContinent = country.continentId;
         switch (dependingOnContinent){
             case 1:
@@ -87,12 +107,14 @@ function renderCountries (country){
             break;
         }
     
+        //Lägger in alla element i kortet
         countryCard.appendChild(countryName);
         countryCard.appendChild(yearVisited);
         countryCard.appendChild(businessOrPleasure);
         countryCard.appendChild(continentInfo);
+        countryCard.appendChild(buttonSection);
 
-        //Lägger till landets kort i diven för alla länder
+        //Lägger till kortet i diven för alla länder
         showCountriesDiv.appendChild(countryCard);
     }
 showAllCountries();
