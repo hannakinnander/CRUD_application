@@ -26,10 +26,11 @@ header h1 {
 main {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
     
 }
 .menu {
-    padding: 1rem;
     display: flex;
     gap: 10px;
     
@@ -62,3 +63,63 @@ main {
     transform: translateY(-2px);
     background-color: rgb(247, 247, 247);
 }
+
+/*Kortens styling */
+.showCountriesDiv {
+    display: flex;
+    gap: 1rem;
+}
+
+.countryCard {
+    font-family: Arial, Helvetica, sans-serif;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px grey;
+}
+.countryCard p {
+    font-size: 1rem;
+}
+.continentInfo {
+    display: flex;
+    gap: 4px;
+}
+.continentInformationButton {
+    font-weight: 600;
+}
+.continentInformationButton:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+.buttonSection {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+.buttonSection button {
+    width: 40%;
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgb(136, 136, 136);
+}
+.buttonSection button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+.editButton {
+    background-color: rgb(255, 255, 255);
+}
+.deleteButton {
+    background-color: rgb(221, 42, 42)
+}
+.countryCard.asia{
+background-color: rgb(255, 223, 136);
+}
+.countryCard.europe{
+    background-color: rgb(188, 238, 247);
+}
+
