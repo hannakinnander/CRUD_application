@@ -1,10 +1,7 @@
-
 const countryInput = document.getElementById("countryInput");
 const yearInput = document.getElementById("yearInput");
 const businessOrPleasureSelector = document.getElementById("businessOrPleasureSelector");
 const continentSelector = document.getElementById("addContinentSelector");
-
-
 
 
 //Ska köras på sparaknappen
