@@ -45,24 +45,10 @@
   ],
   "countries": [
     {
-      "id": "1",
-      "countryName": "Spanien",
-      "yearVisited": 2021,
-      "businessOrPleasure": "business",
-      "continentId": 5
-    },
-    {
       "id": "2",
       "countryName": "Thailand",
       "yearVisited": 2017,
       "businessOrPleasure": "pleasure",
-      "continentId": 1
-    },
-    {
-      "id": "ff14",
-      "countryName": "",
-      "yearVisited": 0,
-      "businessOrPleasure": "business",
       "continentId": 1
     },
     {
@@ -71,13 +57,6 @@
       "yearVisited": 2007,
       "businessOrPleasure": "pleasure",
       "continentId": 5
-    },
-    {
-      "id": "75e5",
-      "countryName": "",
-      "yearVisited": 0,
-      "businessOrPleasure": "business",
-      "continentId": 1
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
