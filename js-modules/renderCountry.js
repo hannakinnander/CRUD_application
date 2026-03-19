@@ -1,5 +1,6 @@
 import { deleteCard } from "./handleCards.js";
 import { editCard } from "./handleCards.js";
+import { showContinentInformation } from "./continents.js";
 
 export function renderCountry (country){
     const showCountriesDiv = document.querySelector(".showCountriesDiv");
@@ -25,10 +26,7 @@ export function renderCountry (country){
         const continentName = document.createElement("p");
         continentName.classList.add("continentInformationButton");
 
-        //Lägger till eventlistener för världsdelen
-        continentName.addEventListener("click", () => {
-            showContinentInformation(country.continentId)
-        });
+
 
         //Lägger till elementen för information om kontinent
         continentInfo.append(continentPresentation, continentName);
@@ -90,7 +88,10 @@ export function renderCountry (country){
             default: 
             break;
         }
-    
+        //Lägger till eventlistener för världsdelen
+        continentName.addEventListener("click", () => {
+            showContinentInformation(country.continentId)
+        });
         //Lägger in alla element i kortet
         countryCard.append(countryName, yearVisited, businessOrPleasure, continentInfo, buttonSection);
 
