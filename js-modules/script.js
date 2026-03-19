@@ -20,9 +20,6 @@ closeAddingField.addEventListener("click", ()=>{
     addDestinationField.classList.add("hidden");
 })
 
-
-
-
 import { renderCountry } from "./renderCountry.js";
 
 export async function getCountries () {
@@ -39,7 +36,6 @@ async function showAllCountries () {
     //Loopa igenom hela arrayen
     countries.forEach((country) =>{
         renderCountry(country);
-       
     })
 }
 showAllCountries();
