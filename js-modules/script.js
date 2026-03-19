@@ -3,6 +3,7 @@ import { saveNewCountry } from "./addNewCountry.js";
 const addDestinationField = document.querySelector(".addDestinationField");
 const addDestinationButton = document.querySelector(".addDestinationButton");
 const saveDestinationButton = document.querySelector(".saveDestinationButton");
+const closeAddingField = document.querySelector(".closeAddingField");
 
 addDestinationButton.addEventListener("click", () =>{
     addDestinationField.classList.remove("hidden");
@@ -10,6 +11,10 @@ addDestinationButton.addEventListener("click", () =>{
 
 saveDestinationButton.addEventListener("click", ()=> {
     saveNewCountry();
+})
+
+closeAddingField.addEventListener("click", ()=>{
+    addDestinationField.classList.add("hidden");
 })
 
 

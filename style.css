@@ -74,6 +74,7 @@ main {
 .showCountriesDiv {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .countryCard {
