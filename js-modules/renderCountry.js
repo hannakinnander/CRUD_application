@@ -1,3 +1,5 @@
+import { deleteCard } from "./handleCards.js";
+
 export function renderCountry (country){
     const showCountriesDiv = document.querySelector(".showCountriesDiv");
     //Skapa "kort" för varje resa
