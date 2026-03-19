@@ -54,7 +54,7 @@ export function renderCountry (country){
         //Lägg till knapparna i behållaren
         buttonSection.append(editButton, deleteButton);
         
-        //En switch beroende på vilken kontinent, för stylling och vad
+        //En switch beroende på vilken kontinent, för styling och vad
         //det ska stå i kortet
         const dependingOnContinent = country.continentId;
         switch (dependingOnContinent){

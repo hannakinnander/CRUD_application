@@ -2,7 +2,7 @@
 import { renderCountry } from "./renderCountry.js";
 import { getCountries } from "./script.js";
 
-const showCountriesDiv = document.querySelector(".showCountriesDiv");
+const main = document.querySelector("main");
 
 export async function showSpecificContinent (id){
     const countries = await getCountries();
@@ -22,18 +22,21 @@ async function getContinents (){
 
 export async function showContinentInformation(id) {
     
+    
     const continents = await getContinents();
 
     const continent = continents.find((continent) => Number(continent.id) === Number(id));
 
     const informationDiv = document.createElement("div");
     informationDiv.classList.add("informationDiv");
+    
 
     const closeButton = document.createElement("button");
     closeButton.classList.add("closeInformationField", "closeButton");
     closeButton.textContent = "✕"
     closeButton.addEventListener("click", ()=>{
-        showCountriesDiv.removeChild(informationDiv);
+        overlay.classList.add("hidden");
+        main.removeChild(informationDiv);
     })
 
     const title = document.createElement("h2");
@@ -47,5 +50,7 @@ export async function showContinentInformation(id) {
     image.alt = `${continent.continentName} utmarkerat på kartan.`
 
     informationDiv.append(title, description, image, closeButton);
-    showCountriesDiv.appendChild(informationDiv);
+    main.appendChild(informationDiv);
+    const overlay = document.querySelector(".overlay");
+    overlay.classList.remove("hidden");
 }

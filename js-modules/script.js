@@ -8,9 +8,13 @@ const addDestinationButton = document.querySelector(".addDestinationButton");
 const saveDestinationButton = document.querySelector(".saveDestinationButton");
 const closeAddingField = document.querySelector(".closeAddingField");
 
+
 addDestinationButton.addEventListener("click", () =>{
     addDestinationField.classList.remove("hidden");
-}) 
+    // document.querySelectorAll(".countryCard").forEach(card =>{
+    //     card.classList.add("hidden");
+    // })
+}) ;
 
 saveDestinationButton.addEventListener("click", ()=> {
     saveNewCountry();
@@ -18,6 +22,9 @@ saveDestinationButton.addEventListener("click", ()=> {
 
 closeAddingField.addEventListener("click", ()=>{
     addDestinationField.classList.add("hidden");
+    document.querySelectorAll(".countryCard").forEach(card =>{
+        card.classList.remove("hidden");
+    })
 })
 
 import { renderCountry } from "./renderCountry.js";
@@ -40,6 +47,7 @@ async function showAllCountries () {
 }
 showAllCountries();
 continentSelector.addEventListener("change", () =>{
+    addDestinationField.classList.add("hidden");
     showCountriesDiv.innerHTML = "";
 if (continentSelector.value === ""){
     showAllCountries();
