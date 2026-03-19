@@ -17,7 +17,6 @@ export async function showSpecificContinent (id){
 async function getContinents (){
     const response = await fetch("http://localhost:3000/continents");
     const continents = await response.json();
-    console.log(continents);
     return continents;
 }
 
