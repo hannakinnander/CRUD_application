@@ -45,18 +45,32 @@
   ],
   "countries": [
     {
-      "id": "2",
-      "countryName": "Thailand",
-      "yearVisited": 2017,
-      "businessOrPleasure": "pleasure",
-      "continentId": 1
-    },
-    {
       "id": "255e",
       "countryName": "Turkiet",
       "yearVisited": 2007,
       "businessOrPleasure": "pleasure",
       "continentId": 5
+    },
+    {
+      "id": "9807",
+      "countryName": "Finland",
+      "yearVisited": 2008,
+      "businessOrPleasure": "business",
+      "continentId": 5
+    },
+    {
+      "id": "0994",
+      "countryName": "rhodos",
+      "yearVisited": 2018,
+      "businessOrPleasure": "pleasure",
+      "continentId": 5
+    },
+    {
+      "id": "aace",
+      "countryName": "Australien",
+      "yearVisited": 2018,
+      "businessOrPleasure": "pleasure",
+      "continentId": 6
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

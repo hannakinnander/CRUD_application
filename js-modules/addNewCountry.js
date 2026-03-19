@@ -19,12 +19,12 @@ export function saveNewCountry (){
 }
 
 async function addCountryToDb (newCountry){
-    const response = await fetch("http://localhost:3000/countries/", {
+     await fetch("http://localhost:3000/countries/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(newCountry)
     })
-    console.log(response);
+    
 }

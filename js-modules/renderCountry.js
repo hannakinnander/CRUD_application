@@ -1,4 +1,5 @@
 import { deleteCard } from "./handleCards.js";
+import { editCard } from "./handleCards.js";
 
 export function renderCountry (country){
     const showCountriesDiv = document.querySelector(".showCountriesDiv");
@@ -30,8 +31,7 @@ export function renderCountry (country){
         });
 
         //Lägger till elementen för information om kontinent
-        continentInfo.appendChild(continentPresentation);
-        continentInfo.appendChild(continentName);
+        continentInfo.append(continentPresentation, continentName);
         
         //Behållare för knappar + knappar för redigering/ta bort
         const buttonSection = document.createElement("div");
@@ -40,7 +40,7 @@ export function renderCountry (country){
         editButton.classList.add("editButton");
         editButton.textContent = "Redigera";
         editButton.addEventListener("click", () => {
-            editCard(country.id);
+            editCard(countryCard, country);
         })
 
         const deleteButton = document.createElement("button");
@@ -51,8 +51,7 @@ export function renderCountry (country){
         });
 
         //Lägg till knapparna i behållaren
-        buttonSection.appendChild(editButton);
-        buttonSection.appendChild(deleteButton);
+        buttonSection.append(editButton, deleteButton);
         
         //En switch beroende på vilken kontinent, för stylling och vad
         //det ska stå i kortet
@@ -93,11 +92,7 @@ export function renderCountry (country){
         }
     
         //Lägger in alla element i kortet
-        countryCard.appendChild(countryName);
-        countryCard.appendChild(yearVisited);
-        countryCard.appendChild(businessOrPleasure);
-        countryCard.appendChild(continentInfo);
-        countryCard.appendChild(buttonSection);
+        countryCard.append(countryName, yearVisited, businessOrPleasure, continentInfo, buttonSection);
 
         //Lägger till kortet i diven för alla länder
         showCountriesDiv.appendChild(countryCard);
