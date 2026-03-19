@@ -1,3 +1,5 @@
+import { renderCountry } from "./renderCountry.js";
+
 export function deleteCard (id){
     fetch(`http://localhost:3000/countries/${id}`, {
        method: "DELETE" 
@@ -72,8 +74,22 @@ export function editCard (countryCard, country){
         southAmericaOption, europeOption, oceaniaOption, antarcticaOption);
     continentSelector.value = country.continentId;
 
-
+    const closeButton = document.createElement("button");
+    closeButton.classList.add("closeEdit", "closeButton");
+    closeButton.textContent = "✕"
+    closeButton.addEventListener("click", ()=>{
+        const updatedCard = {
+            id: country.id,
+            countryName: countryInput.value,
+            yearVisited: Number(yearVisitedInput.value),
+            businessOrPleasure: businessOrPleasureSelector.value,
+            continentId: Number(continentSelector.value)
+    }
+        updateDb(country.id, updatedCard)
+    });
+        
     const saveButton = document.createElement("button");
+    saveButton.classList.add("cardButton");
     saveButton.textContent = "Spara";
     saveButton.addEventListener("click", () =>{
         const updatedCard = {
@@ -84,8 +100,7 @@ export function editCard (countryCard, country){
             continentId: Number(continentSelector.value)
     }
         updateDb(country.id, updatedCard)
-    }
-    )
+    });
 
     //Lägger in elementen i sina parents
     
@@ -94,7 +109,7 @@ export function editCard (countryCard, country){
     
         continentDiv.append(continentPresentation, continentSelector);
     countryCard.append(countryInput, yearVisitedDiv, businessOrPleasureDiv, 
-        continentDiv, saveButton);
+        continentDiv, saveButton, closeButton);
 };
 
 export async function updateDb(id, updatedCard) {

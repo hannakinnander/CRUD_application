@@ -38,14 +38,14 @@ export function renderCountry (country){
         const buttonSection = document.createElement("div");
         buttonSection.classList.add("buttonSection");
         const editButton = document.createElement("button");
-        editButton.classList.add("editButton");
+        editButton.classList.add("editButton", "cardButton");
         editButton.textContent = "Redigera";
         editButton.addEventListener("click", () => {
             editCard(countryCard, country);
         })
 
         const deleteButton = document.createElement("button");
-        deleteButton.classList.add("deleteButton");
+        deleteButton.classList.add("deleteButton", "cardButton");
         deleteButton.textContent = "Ta bort";
         deleteButton.addEventListener("click", () => {
             deleteCard(country.id);

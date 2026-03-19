@@ -99,6 +99,7 @@ main {
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 1px 1px 3px grey;
+    position: relative;
 }
 .countryCard p {
     font-size: 1rem;
@@ -119,14 +120,14 @@ main {
     justify-content: flex-start;
     gap: 1rem;
 }
-.countryCard button {
+.cardButton {
     width: 40%;
     padding: 4px;
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgb(136, 136, 136);
 }
-.buttonSection button:hover {
+.cardButton:hover {
     cursor: pointer;
     transform: translateY(-2px);
 }
@@ -135,6 +136,11 @@ main {
 }
 .deleteButton {
     background-color: rgb(221, 42, 42)
+}
+
+/*EDITMODE PÅ KORTEN*/
+.editMode {
+    padding-right: 3rem;
 }
 
 /*FÄRG UTIFRÅN KONTINENT*/

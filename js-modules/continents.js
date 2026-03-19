@@ -26,7 +26,6 @@ export async function showContinentInformation(id) {
 
     const continent = continents.find((continent) => Number(continent.id) === Number(id));
 
-    
     const informationDiv = document.createElement("div");
     informationDiv.classList.add("informationDiv");
 
