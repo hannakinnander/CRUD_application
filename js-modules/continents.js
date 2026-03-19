@@ -2,9 +2,9 @@
 import { renderCountry } from "./renderCountry.js";
 import { getCountries } from "./script.js";
 
+const showCountriesDiv = document.querySelector(".showCountriesDiv");
 
 export async function showSpecificContinent (id){
-    
     const countries = await getCountries();
     
     const specificCountries = countries.filter((country) => country.continentId === id)
@@ -26,13 +26,16 @@ export async function showContinentInformation(id) {
 
     const continent = continents.find((continent) => Number(continent.id) === Number(id));
 
-    const showCountriesDiv = document.querySelector(".showCountriesDiv");
+    
     const informationDiv = document.createElement("div");
     informationDiv.classList.add("informationDiv");
 
     const closeButton = document.createElement("button");
     closeButton.classList.add("closeInformationField", "closeButton");
     closeButton.textContent = "✕"
+    closeButton.addEventListener("click", ()=>{
+        showCountriesDiv.removeChild(informationDiv);
+    })
 
     const title = document.createElement("h2");
     title.textContent = continent.continentName;
