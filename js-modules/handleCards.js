@@ -9,7 +9,8 @@ export function deleteCard (id){
 export function editCard (countryCard, country){
     countryCard.innerHTML = "";
     countryCard.classList.add("editMode");
-
+    document.querySelector(".overlay").classList.remove("hidden");
+    
     //Ändra landet
     const countryInput = document.createElement("input");
     countryInput.classList.add("editCountry");
@@ -78,7 +79,7 @@ export function editCard (countryCard, country){
 
     const closeButton = document.createElement("button");
     closeButton.classList.add("closeEdit", "closeButton");
-    closeButton.textContent = "✕"
+    closeButton.textContent = "↩";
     closeButton.addEventListener("click", ()=>{
         const updatedCard = {
             id: country.id,

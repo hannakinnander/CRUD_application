@@ -22,7 +22,7 @@ export function renderCountry (country){
         const continentPresentation = document.createElement("p");
         //Delar upp "Tillhör: " och namnet på världsdelen för att göra endast världsdelen klickbar
         //för att komma till information om världsdelen
-        continentPresentation.textContent ="Tillhör: ";
+        continentPresentation.textContent ="Världsdel: ";
         const continentName = document.createElement("p");
         continentName.classList.add("continentInformationButton");
 

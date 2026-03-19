@@ -78,6 +78,20 @@
       "yearVisited": 2013,
       "businessOrPleasure": "business",
       "continentId": 6
+    },
+    {
+      "id": "54e3",
+      "countryName": "",
+      "yearVisited": 0,
+      "businessOrPleasure": "business",
+      "continentId": 1
+    },
+    {
+      "id": "af4f",
+      "countryName": "",
+      "yearVisited": 0,
+      "businessOrPleasure": "business",
+      "continentId": 1
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

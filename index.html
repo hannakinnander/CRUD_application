@@ -15,37 +15,24 @@
     <main>
         <div class="overlay hidden"></div>
             <div class="menu">
-                <button class="addDestinationButton">Lägg till ny resa</button>
-                <select id="continentSelector">
-                    <option value="">Visa alla resor</option>
-                    <option value="1">Visa resor till Asien</option>
-                    <option value="2">Visa resor till Afrika</option>
-                    <option value="3">Visa resor till Nordamerika</option>
-                    <option value="4">Visa resor till Sydamerika</option>
-                    <option value="5">Visa resor till Europa</option>
-                    <option value="6">Visa resor till Oceanien</option>
-                    <option value="7">Visa resor till Antarktis</option>
-                </select>
-            </div>
-            <div class="addDestinationField hidden">
-                <button class="closeAddingField closeButton">✕</button>
-                <div>
+                <div class="addDestinationField">
+                <div class="makeFlexColumn">
                     <label for="countryInput">Destination: </label>
                     <input id="countryInput">
                 </div>
-                <div>
+                <div class="makeFlexColumn">
                     <label for="yearInput">Besöktes år: </label>
                     <input id="yearInput">
                 </div>
-                <div>
+                <div class="makeFlexColumn">
                     <label for="businessOrPleasureSelector">Typ av resa: </label>
                     <select id="businessOrPleasureSelector">
                     <option value="business">Business</option>
                     <option value="pleasure">Pleasure</option>
                 </select>
                 </div>
-                <div>
-                    <label for="addContinentSelector">Tillhör: </label>
+                <div class="makeFlexColumn">
+                    <label for="addContinentSelector">Världsdel: </label>
                     <select id="addContinentSelector">
                     <option value="1">Asien</option>
                     <option value="2">Afrika</option>
@@ -59,6 +46,18 @@
                 
                 <button class="saveDestinationButton">Spara</button>
             </div>
+                <select id="continentSelector">
+                    <option value="">Visa alla resor</option>
+                    <option value="1">Visa resor till Asien</option>
+                    <option value="2">Visa resor till Afrika</option>
+                    <option value="3">Visa resor till Nordamerika</option>
+                    <option value="4">Visa resor till Sydamerika</option>
+                    <option value="5">Visa resor till Europa</option>
+                    <option value="6">Visa resor till Oceanien</option>
+                    <option value="7">Visa resor till Antarktis</option>
+                </select>
+            </div>
+            
             <div class="showCountriesDiv"></div>
         </div>
     </main>
