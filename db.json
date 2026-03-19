@@ -45,18 +45,39 @@
   ],
   "countries": [
     {
-      "id": "255e",
-      "countryName": "Turkiet",
-      "yearVisited": 2007,
+      "id": "f477",
+      "countryName": "Kapstaden",
+      "yearVisited": 2001,
       "businessOrPleasure": "pleasure",
-      "continentId": 5
+      "continentId": 2
     },
     {
-      "id": "9807",
-      "countryName": "Danmark",
-      "yearVisited": 2009,
+      "id": "a77b",
+      "countryName": "USA",
+      "yearVisited": 2005,
+      "businessOrPleasure": "business",
+      "continentId": 3
+    },
+    {
+      "id": "bc57",
+      "countryName": "Thailand",
+      "yearVisited": 2016,
       "businessOrPleasure": "pleasure",
-      "continentId": 5
+      "continentId": 1
+    },
+    {
+      "id": "29f9",
+      "countryName": "Antarktis",
+      "yearVisited": 2011,
+      "businessOrPleasure": "pleasure",
+      "continentId": 7
+    },
+    {
+      "id": "3cf5",
+      "countryName": "Australien",
+      "yearVisited": 2013,
+      "businessOrPleasure": "business",
+      "continentId": 6
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -38,14 +38,14 @@ export function renderCountry (country){
         const buttonSection = document.createElement("div");
         buttonSection.classList.add("buttonSection");
         const editButton = document.createElement("button");
-        editButton.classList.add("editButton");
+        editButton.classList.add("editButton", "cardButton");
         editButton.textContent = "Redigera";
         editButton.addEventListener("click", () => {
             editCard(countryCard, country);
         })
 
         const deleteButton = document.createElement("button");
-        deleteButton.classList.add("deleteButton");
+        deleteButton.classList.add("deleteButton", "cardButton");
         deleteButton.textContent = "Ta bort";
         deleteButton.addEventListener("click", () => {
             deleteCard(country.id);
@@ -54,7 +54,7 @@ export function renderCountry (country){
         //Lägg till knapparna i behållaren
         buttonSection.append(editButton, deleteButton);
         
-        //En switch beroende på vilken kontinent, för stylling och vad
+        //En switch beroende på vilken kontinent, för styling och vad
         //det ska stå i kortet
         const dependingOnContinent = country.continentId;
         switch (dependingOnContinent){
