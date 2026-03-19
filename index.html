@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD-application</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/ef6a8a4dba.js" crossorigin="anonymous"></script>
     <script type="module" src="js-modules/script.js" defer></script>
 </head>
 <body>
@@ -13,9 +14,38 @@
     </header>
     <main>
         <div class="menu">
-            <button class="addDestination">Lägg till ny resa</button>
+            <button class="addDestinationButton">Lägg till ny resa</button>
             <select id="continentSelector">
-                <option value="">Visa alla världsdelar</option>
+                <option value="">Visa alla resor</option>
+                <option value="1">Visa resor till Asien</option>
+                <option value="2">Visa resor till Afrika</option>
+                <option value="3">Visa resor till Nordamerika</option>
+                <option value="4">Visa resor till Sydamerika</option>
+                <option value="5">Visa resor till Europa</option>
+                <option value="6">Visa resor till Oceanien</option>
+                <option value="7">Visa resor till Antarktis</option>
+            </select>
+        </div>
+        <div class="addDestinationField">
+            <button class="closeAddingField"><i class="fa-solid fa-xmark"></i></button>
+            <div>
+                <label for="countryInput">Destination: </label>
+                <input id="countryInput">
+            </div>
+            <div>
+                <label for="yearInput">Besöktes år: </label>
+                <input id="yearInput">
+            </div>
+            <div>
+                <label for="businessOrPleasureSelector">Typ av resa: </label>
+                <select id="businessOrPleasureSelector">
+                <option value="business">Business</option>
+                <option value="pleasure">Pleasure</option>
+            </select>
+            </div>
+            <div>
+                <label for="addContinentSelector">Tillhör: </label>
+                <select id="addContinentSelector">
                 <option value="1">Asien</option>
                 <option value="2">Afrika</option>
                 <option value="3">Nordamerika</option>
@@ -24,6 +54,11 @@
                 <option value="6">Oceanien</option>
                 <option value="7">Antarktis</option>
             </select>
+            </div>
+            
+            <button class="saveDestinationButton">Spara</button>
+            
+            
         </div>
         <div class="showCountriesDiv"></div>
     </main>

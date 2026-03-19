@@ -34,15 +34,18 @@ main {
     display: flex;
     gap: 10px;
     
+    
 }
 .menu button {
     width: 10rem;
+    height: 3rem;
     font-size: 1rem;
     padding: 10px;
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgb(139, 139, 139);
     background-color: rgb(194, 221, 150);
+    align-self: center;
 }
 .menu button:hover {
     cursor: pointer;
@@ -51,7 +54,10 @@ main {
 }
 
 .menu select {
-    width: fit-content;
+    width: 10rem;
+    height: 3rem;
+    align-self: center;
+    box-shadow: 1px 1px 3px rgb(139, 139, 139);
     font-size: 1rem;
     padding: 10px;
     border: none;
@@ -123,3 +129,43 @@ background-color: rgb(255, 223, 136);
     background-color: rgb(188, 238, 247);
 }
 
+.addDestinationField {
+    background-color: rgb(194, 221, 150);
+    padding: 2rem 3rem 1rem 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 1px 1px 3px rgb(139, 139, 139);
+    width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}
+.closeAddingField {
+    width: fit-content;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+}
+.addDestinationField input {
+    border: none;
+    border-radius: 5px;
+    height: 1.5rem;
+}
+.addDestinationField select {
+    border: none;
+    border-radius: 5px;
+    height: 1.5rem;  
+}
+.saveDestinationButton {
+    width: 40%;
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgb(136, 136, 136);
+}
+.hidden {
+    display: none;
+}

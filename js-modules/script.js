@@ -1,3 +1,18 @@
+import { saveNewCountry } from "./addNewCountry.js";
+
+const addDestinationField = document.querySelector(".addDestinationField");
+const addDestinationButton = document.querySelector(".addDestinationButton");
+const saveDestinationButton = document.querySelector(".saveDestinationButton");
+
+addDestinationButton.addEventListener("click", () =>{
+    addDestinationField.classList.remove("hidden");
+}) 
+
+saveDestinationButton.addEventListener("click", ()=> {
+    saveNewCountry();
+})
+
+
 import { renderCountry } from "./renderCountry.js";
 
 async function getCountries () {
@@ -19,3 +34,4 @@ async function showAllCountries () {
 }
 
 showAllCountries();
+
