@@ -1,6 +1,8 @@
 import { saveNewCountry } from "./addNewCountry.js";
+import { showSpecificContinent } from "./continents.js";
 
-
+const showCountriesDiv = document.querySelector(".showCountriesDiv");
+const continentSelector = document.getElementById("continentSelector");
 const addDestinationField = document.querySelector(".addDestinationField");
 const addDestinationButton = document.querySelector(".addDestinationButton");
 const saveDestinationButton = document.querySelector(".saveDestinationButton");
@@ -23,7 +25,7 @@ closeAddingField.addEventListener("click", ()=>{
 
 import { renderCountry } from "./renderCountry.js";
 
-async function getCountries () {
+export async function getCountries () {
     const response = await fetch ("http://localhost:3000/countries");
     const countries = await response.json();
     return countries;
@@ -40,6 +42,14 @@ async function showAllCountries () {
        
     })
 }
-
 showAllCountries();
+continentSelector.addEventListener("change", () =>{
+    showCountriesDiv.innerHTML = "";
+if (continentSelector.value === ""){
+    showAllCountries();
+}
+else{
+    showSpecificContinent(Number(continentSelector.value));
+}
+});
 
