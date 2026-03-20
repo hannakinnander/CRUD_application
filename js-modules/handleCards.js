@@ -1,19 +1,41 @@
 import { renderCountry } from "./renderCountry.js";
+import { checkContinentValue } from "./script.js";
+import { showCountriesDiv } from "./script.js";
+import { dataError } from "./script.js";
+import { continentSelector } from "./script.js";
 
-export function deleteCard (id){
-    fetch(`http://localhost:3000/countries/${id}`, {
+const overlay = document.querySelector(".overlay");
+
+
+//Läggs i eventlistener för knappen som skapas i renderCountry
+export async function deleteCard (id){
+    try {
+    const response = await fetch(`http://localhost:3000/countries/${id}`, {
        method: "DELETE" 
     });
+    if (!response.ok) {
+        throw new Error(`Failed to delete: ${response.status}`);
+    }
+    const deletedCard = await response.json();
+    console.log(deletedCard);
+    return deletedCard;
+    }
+    catch (error){
+        console.log(error);
+        throw error;  // Re-throw
+    }
+    
 }
 
+//Körs på Redigera-knappen som skapas i renderCountry.js
 export function editCard (countryCard, country){
     countryCard.innerHTML = "";
     countryCard.classList.add("editMode");
-    document.querySelector(".overlay").classList.remove("hidden");
+    overlay.classList.remove("hidden");
     
     //Ändra landet
     const countryInput = document.createElement("input");
-    countryInput.classList.add("editCountry");
+    countryInput.id ="editCountry";
     countryInput.value = country.countryName;
 
     //Element som behövs för året
@@ -22,7 +44,7 @@ export function editCard (countryCard, country){
     const yearVisited = document.createElement("p");
     yearVisited.textContent = "Besöktes år: ";
     const yearVisitedInput = document.createElement("input");
-    yearVisitedInput.classList.add("editYear");
+    yearVisitedInput.id = "editYear";
     yearVisitedInput.value = country.yearVisited;
 
     //Element som behövs för typ av resa
@@ -31,6 +53,7 @@ export function editCard (countryCard, country){
     const businessOrPleasure = document.createElement("p");
     businessOrPleasure.textContent = "Typ av resa: ";
     const businessOrPleasureSelector = document.createElement("select");
+    businessOrPleasureSelector.id = "editBusinessPleasure";
     businessOrPleasureSelector.classList.add("editSelector");
     const businessOption = document.createElement("option");
     businessOption.value = "business";
@@ -48,8 +71,9 @@ export function editCard (countryCard, country){
     continentDiv.classList.add("makeFlex");
     const continentPresentation= document.createElement("p");
     continentPresentation.textContent = "Tillhör: ";
-    const continentSelector = document.createElement("select");
-    continentSelector.classList.add("editSelector");
+    const continentSelectorEdit = document.createElement("select");
+    continentSelectorEdit.id = "continentSelectorEdit"
+    continentSelectorEdit.classList.add("editSelector");
     const asiaOption = document.createElement("option");
     asiaOption.value = "1";
     asiaOption.textContent = "Asien"; 
@@ -73,56 +97,86 @@ export function editCard (countryCard, country){
     antarcticaOption.textContent = "Antarktis";  
 
     //Lägger till options till selector och sätter värdet till det gamla
-    continentSelector.append(asiaOption, africaOption, northAmericaOption,
+    continentSelectorEdit.append(asiaOption, africaOption, northAmericaOption,
         southAmericaOption, europeOption, oceaniaOption, antarcticaOption);
-    continentSelector.value = country.continentId;
-
+    continentSelectorEdit.value = country.continentId;
+    
+    //Tillbaka-knapp
     const closeButton = document.createElement("button");
     closeButton.classList.add("closeEdit", "closeButton");
     closeButton.textContent = "↩";
-    closeButton.addEventListener("click", ()=>{
-        const updatedCard = {
-            id: country.id,
-            countryName: countryInput.value,
-            yearVisited: Number(yearVisitedInput.value),
-            businessOrPleasure: businessOrPleasureSelector.value,
-            continentId: Number(continentSelector.value)
-    }
-        updateDb(country.id, updatedCard)
+    closeButton.addEventListener("click", async()=>{
+        showCountriesDiv.removeChild(countryCard);
+        countryCard.classList.remove("editMode");
+        overlay.classList.add("hidden");
+        // Pass the current continent selector value to stay filtered
+        await checkContinentValue(continentSelector.value);
+ 
     });
         
     const saveButton = document.createElement("button");
     saveButton.classList.add("cardButton", "saveChanges");
     saveButton.textContent = "Spara";
-    saveButton.addEventListener("click", () =>{
-        const updatedCard = {
+    saveButton.addEventListener("click", async() =>{
+        
+        console.log("KLICK");
+        try {
+            const updatedCard = {
             id: country.id,
             countryName: countryInput.value,
             yearVisited: Number(yearVisitedInput.value),
             businessOrPleasure: businessOrPleasureSelector.value,
-            continentId: Number(continentSelector.value)
-    }
-        updateDb(country.id, updatedCard)
+            continentId: continentSelectorEdit.value
+        }
+        countryCard.classList.remove("editMode");
+        overlay.classList.add("hidden");
+
+        //Få det ändrade objektet
+        const updatedData = await updateDb(country.id, updatedCard);
+        console.log(updatedData);
+        // Pass the current continent selector value to stay filtered
+        await checkContinentValue(continentSelector.value);        
+        }
+       catch (error){
+        console.log(error);
+        const dataError = document.querySelector(".dataError");
+        dataError.textContent = "Kunde inte ändra. Kontrollera server";
+       }
+        
     });
 
     //Lägger in elementen i sina parents
-    
     businessOrPleasureDiv.append(businessOrPleasure, businessOrPleasureSelector);
     yearVisitedDiv.append(yearVisited, yearVisitedInput);
     
-        continentDiv.append(continentPresentation, continentSelector);
+        continentDiv.append(continentPresentation, continentSelectorEdit);
     countryCard.append(countryInput, yearVisitedDiv, businessOrPleasureDiv, 
         continentDiv, saveButton, closeButton);
 };
 
 export async function updateDb(id, updatedCard) {
-    await fetch(`http://localhost:3000/countries/${id}`, {
+    
+    try {
+    const response = await fetch(`http://localhost:3000/countries/${id}`, {
        method: "PUT",
        headers: {
         "Content-Type": "application/json"
        },
        body: JSON.stringify(updatedCard)
+       
     });
+    if (!response.ok) {
+        throw new Error(`Failed to update: ${response.status}`);
+    }
+    const upDatedData = await response.json();
+    return upDatedData;
+    
+    }
+    catch (error) {
+        console.log(error);
+        throw error;  // Re-throw to be caught in save button
+    }
+    
 }
 
 
