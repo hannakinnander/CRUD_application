@@ -1,42 +1,42 @@
 import { saveNewCountry } from "./addNewCountry.js";
 import { showSpecificContinent } from "./continents.js";
-
-const showCountriesDiv = document.querySelector(".showCountriesDiv");
-const continentSelector = document.getElementById("continentSelector");
-const addDestinationField = document.querySelector(".addDestinationField");
-const addDestinationButton = document.querySelector(".addDestinationButton");
-const saveDestinationButton = document.querySelector(".saveDestinationButton");
-const closeAddingField = document.querySelector(".closeAddingField");
-
-
-addDestinationButton.addEventListener("click", () =>{
-    addDestinationField.classList.remove("hidden");
-    // document.querySelectorAll(".countryCard").forEach(card =>{
-    //     card.classList.add("hidden");
-    // })
-}) ;
-
-saveDestinationButton.addEventListener("click", ()=> {
-    saveNewCountry();
-})
-
-closeAddingField.addEventListener("click", ()=>{
-    addDestinationField.classList.add("hidden");
-    document.querySelectorAll(".countryCard").forEach(card =>{
-        card.classList.remove("hidden");
-    })
-})
-
 import { renderCountry } from "./renderCountry.js";
 
+export const continentSelector = document.getElementById("continentSelector");
+const saveDestinationButton = document.querySelector(".saveDestinationButton");
+export const dataError = document.querySelector(".dataError");
+const showAllButton = document.querySelector(".showAllButton");
+export let currentContinentSelected;
+export const showCountriesDiv = document.querySelector(".showCountriesDiv");
+
+//Kör funktion för att spara kort, finns i addNewCountry-modulen
+saveDestinationButton.addEventListener("click", async()=> {
+    await saveNewCountry(currentContinentSelected);
+})
+
+showAllButton.addEventListener("click", async()=>{
+    currentContinentSelected = "all";
+    console.log(currentContinentSelected);
+    await showAllCountries();
+})
+
+
 export async function getCountries () {
-    const response = await fetch ("http://localhost:3000/countries");
-    const countries = await response.json();
-    return countries;
+    try {
+        const response = await fetch ("http://localhost:3000/countries");
+        const countries = await response.json();
+        return countries;
+    }
+    catch {
+        dataError.textContent = "Kunde inte ladda resor";
+        return [];  // Return empty array to prevent errors
+    }
+ 
 }
 
 //Målar ut alla sparade resemål
 async function showAllCountries () {
+    showCountriesDiv.innerHTML= "";
     //Får arrayen countries
     const countries = await getCountries();
 
@@ -45,15 +45,22 @@ async function showAllCountries () {
         renderCountry(country);
     })
 }
-showAllCountries();
-continentSelector.addEventListener("change", () =>{
-    addDestinationField.classList.add("hidden");
-    showCountriesDiv.innerHTML = "";
-if (continentSelector.value === ""){
-    showAllCountries();
+
+// //Kollar vilken inställning man står på i världsdelsselektorn och visar kort utifrån det
+export async function checkContinentValue (currentContinentSelected) {
+    currentContinentSelected = continentSelector.value;
+    
+    if (currentContinentSelected === "all"){
+        await showAllCountries();
+    }
+    else{
+        await showSpecificContinent(currentContinentSelected);
+    }
 }
-else{
-    showSpecificContinent(Number(continentSelector.value));
-}
+
+continentSelector.addEventListener("change", async() =>{
+    console.log("ändrat state");
+    currentContinentSelected = continentSelector.value;
+    await checkContinentValue();
 });
 
