@@ -3,7 +3,7 @@ import { checkContinentValue } from "./script.js";
 import { showCountriesDiv } from "./script.js";
 import { dataError } from "./script.js";
 
-const overlay = document.querySelector(".overlay");
+export const overlay = document.querySelector(".overlay");
 
 
 //Läggs i eventlistener för knappen som skapas i renderCountry

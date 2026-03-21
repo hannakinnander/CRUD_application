@@ -1,6 +1,7 @@
 import { renderCountry } from "./renderCountry.js";
-import { checkContinentValue } from "./script.js";
 import { dataError } from "./script.js";
+
+//Hämtar nödvändiga element
 const countryInput = document.getElementById("countryInput");
 const yearInput = document.getElementById("yearInput");
 const businessOrPleasureSelector = document.getElementById("businessOrPleasureSelector");
@@ -87,12 +88,10 @@ async function addCountryToDb (newCountry){
     if (!response.ok) {
         throw new Error("Kunde inte lägga till resa");
     }
-
     } 
     catch (error){
         return null;
     }
-    
 }
 
 //Återställer inputfält och felmeddelanden

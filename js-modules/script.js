@@ -13,21 +13,13 @@ export const showCountriesDiv = document.querySelector(".showCountriesDiv");
 
 //Kör funktion för att spara kort, finns i addNewCountry-modulen
 saveDestinationButton.addEventListener("click", async()=> {
-    try {
-        await saveNewCountry(currentContinentSelected);
-    }
-    catch {
-        countryError.textContent = "Kunde inte spara resa";
-        return;
-    }
-    
-})
+    await saveNewCountry(currentContinentSelected);
+});
 
 showAllButton.addEventListener("click", async()=>{
     currentContinentSelected = "all";
     await showAllCountries();
-})
-
+});
 
 export async function getCountries () {
     try {
@@ -51,7 +43,7 @@ async function showAllCountries () {
 
         //Om fetchen misslyckats eller man får tillbaka en tom array skickas felmeddelande ut och funktionen avslutas
         if (countries === null){
-            dataError.textContent = "Kunde inte ladda resor. Kontrollera server";
+            dataError.textContent = "Kunde inte ladda resor. Kontrollera server.";
             return;
         }
         else if (countries.length === 0){
