@@ -1,9 +1,7 @@
-import { deleteCard } from "./handleCards.js";
+import { deleteCard } from "./crud.js";
 import { editCard } from "./handleCards.js";
 import { showContinentInformation } from "./continents.js";
-import { currentContinentSelected } from "./script.js";
-import { showCountriesDiv } from "./script.js";
-import { dataError } from "./script.js";
+import { currentContinentSelected, showCountriesDiv, dataError } from "./script.js";
 
 //Kallas på när man skapar kort i spara-knappen på addNewCountry
 export function renderCountry (country){

@@ -21,11 +21,11 @@ export async function getCountries () {
 export async function updateDb(id, updatedCard) {
     try {
         const response = await fetch(`http://localhost:3000/countries/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
         },
-        body: JSON.stringify(updatedCard)
+            body: JSON.stringify(updatedCard)
         });
         if (!response.ok) {
             throw new Error("Kunde inte uppdatera kortet");
@@ -64,12 +64,15 @@ export async function addCountryToDb (newCountry){
             headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(newCountry)
-    });
-    if (!response.ok) {
-        throw new Error("Kunde inte lägga till resa");
-    }
+            body: JSON.stringify(newCountry)
+        });
+        if (!response.ok) {
+            throw new Error("Kunde inte lägga till resa");
+        }
+        const addedCountry = await response.json();
+        return addedCountry;
     } 
+
     catch (error){
         return null;
     }

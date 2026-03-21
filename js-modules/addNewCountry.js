@@ -1,5 +1,6 @@
 import { renderCountry } from "./renderCountry.js";
 import { dataError } from "./script.js";
+import { addCountryToDb } from "./crud.js";
 
 //Hämtar nödvändiga element
 const countryInput = document.getElementById("countryInput");
@@ -12,7 +13,7 @@ const saved = document.querySelector(".saved");
 
 //Ska köras på sparaknappen i script.js. Tar med vilken världsdel man står i.
 export async function saveNewCountry (currentContinentSelected){
-
+    console.log(currentContinentSelected);
     //Kontrollera inputs. Får tillbaka nya resan som objekt om alla inputs var okej.
     const newCountry = checkInputs();
     if (!newCountry){
@@ -20,18 +21,28 @@ export async function saveNewCountry (currentContinentSelected){
     }
     //Försöker lägga till nya landet till db.json
     try {
-        const addCountry = await addCountryToDb(newCountry);
+        const addedCountry = await addCountryToDb(newCountry);
         //Får man tillbaka null så vet man att det inte gått bra. Då kastas fel.
-        if (addCountry === null){
+        console.log("Added continentid:" + addedCountry.continentId);
+        console.log("Currentcontinent:" + currentContinentSelected);
+        if (addedCountry === null){
             throw new Error("Kunde inte spara resa");
         }
         //Om man står på världsdel som matchar kortet eller hade tryckt "visa alla" så målas kortet ut.
-        else if (newCountry.continentId === currentContinentSelected || currentContinentSelected === "all"){
+        else if (addedCountry.continentId === currentContinentSelected) {
             saved.textContent = "Sparad!"
-            renderCountry(country);
+            setTimeout(()=>{
+                saved.textContent = "";
+            }, 2000);
+            resetInputsAndErrors();
+            renderCountry(addedCountry);
         }
         else {
+            resetInputsAndErrors();
             saved.textContent = "Sparad!"
+            setTimeout(()=>{
+                saved.textContent = "";
+            }, 2000);
             return;
         }
     }
@@ -41,7 +52,6 @@ export async function saveNewCountry (currentContinentSelected){
         return;
     }
 }
-
 //Kontrollerar det användaren har skrivit in och valt i selektorerna(ny resa)
 function checkInputs () {
     Number(yearInput.value);
@@ -73,24 +83,6 @@ function checkInputs () {
         }
         resetInputsAndErrors();
         return newCountry;
-    }
-}
-//Lägger till nya landet i db.json
-async function addCountryToDb (newCountry){
-    try {
-        const response = await fetch("http://localhost:3000/countries/", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newCountry)
-    });
-    if (!response.ok) {
-        throw new Error("Kunde inte lägga till resa");
-    }
-    } 
-    catch (error){
-        return null;
     }
 }
 

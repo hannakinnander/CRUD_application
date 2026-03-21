@@ -1,29 +1,8 @@
-import { showSpecificContinent } from "./continents.js";
-import { renderCountry } from "./renderCountry.js";
-import { checkContinentValue, currentContinentSelected, continentSelector} from "./script.js";
-import { showCountriesDiv } from "./script.js";
-import { dataError } from "./script.js";
+import { checkContinentValue, currentContinentSelected, dataError} from "./script.js";
+import { updateDb } from "./crud.js";
 
-
-
+//Filter för att göra backgrunden oklickbar när man är i editmode
 export const overlay = document.querySelector(".overlay");
-
-//Läggs i eventlistener för knappen som skapas i renderCountry
-export async function deleteCard (id){
-    try {
-    const response = await fetch(`http://localhost:3000/countries/${id}`, {
-       method: "DELETE" 
-    });
-    if (!response.ok) {
-        throw new Error("Kunde inte radera");
-    }
-    const deletedCard = await response.json();
-    return deletedCard;
-    }
-    catch (error){
-        return null;
-    }
-};
 
 //Körs på Redigera-knappen som skapas i renderCountry.js. Gör om kortet till "editmode".
 //Alla tidigare värden i kortet skrivs ut i inputs och selektorer
@@ -122,7 +101,6 @@ export function editCard (countryCard, country){
         businessOrPleasure: businessOrPleasureSelector.value,
         continentId: continentSelectorEdit.value
         }
-        
         //Få det ändrade objektet
         const updatedData = await updateDb(country.id, updatedCard);
         if (updatedData === null){
@@ -143,24 +121,6 @@ export function editCard (countryCard, country){
         continentDiv, saveButton, closeButton);
 };
 
-export async function updateDb(id, updatedCard) {
-    try {
-        const response = await fetch(`http://localhost:3000/countries/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updatedCard)
-        });
-        if (!response.ok) {
-            throw new Error("Kunde inte uppdatera kortet");
-        }
-        const upDatedData = await response.json();
-        return upDatedData;
-    }
-    catch (error) {
-        return null;
-    }
-};
+
 
 

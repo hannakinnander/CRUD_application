@@ -8,16 +8,20 @@ export const continentSelector = document.getElementById("continentSelector");
 const saveDestinationButton = document.querySelector(".saveDestinationButton");
 export const dataError = document.querySelector(".dataError");
 const showAllButton = document.querySelector(".showAllButton");
-export let currentContinentSelected;
 export const showCountriesDiv = document.querySelector(".showCountriesDiv");
+
+export let currentContinentSelected;
 
 //Kör funktion för att spara kort, finns i addNewCountry-modulen
 saveDestinationButton.addEventListener("click", async()=> {
+    currentContinentSelected = continentSelector.value;
+    console.log(currentContinentSelected);
     await saveNewCountry(currentContinentSelected);
 });
 
 showAllButton.addEventListener("click", async()=>{
     currentContinentSelected = "";
+    continentSelector.value = "";
     await showAllCountries();
 });
 

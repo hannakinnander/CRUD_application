@@ -1,9 +1,9 @@
 import { renderCountry } from "./renderCountry.js";
 import { getCountries, getContinent } from "./crud.js";
-import { showCountriesDiv, dataError } from "./script.js";
+import { dataError, showCountriesDiv } from "./script.js";
 import { overlay } from "./handleCards.js"
 
-
+const main = document.querySelector("main");
 //Hämtar länder/resor och filtrerar ut på resornas continentId och världsdelarnas id.
 export async function showSpecificContinent (id){
     showCountriesDiv.innerHTML= "";
@@ -48,7 +48,7 @@ export async function showContinentInformation(id) {
     closeButton.textContent = "✕"
     closeButton.addEventListener("click", ()=>{
         overlay.classList.add("hidden");
-        showCountriesDiv.removeChild(informationDiv);
+        main.removeChild(informationDiv);
     });
 
     const title = document.createElement("h2");
@@ -62,6 +62,6 @@ export async function showContinentInformation(id) {
     image.alt = `${continent.continentName} utmarkerat på kartan.`
 
     informationDiv.append(title, description, image, closeButton);
-    showCountriesDiv.appendChild(informationDiv);
+    main.appendChild(informationDiv);
     overlay.classList.remove("hidden");
 };
