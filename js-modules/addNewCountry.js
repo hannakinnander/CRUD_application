@@ -35,6 +35,7 @@ export async function saveNewCountry (currentContinentSelected){
         }
     }
     catch (error){
+        resetInputsAndErrors();
         dataError.textContent = "Kunde inte spara resa. Saknar kontakt med servern."
         return;
     }
@@ -62,18 +63,18 @@ function checkInputs () {
     else if (yearInput.value ===""){
         yearError.textContent = "Får inte lämnas tomt"       
     }
-   else {
-    countryError.textContent =="";
-    yearError.textContent=="";
-    const newCountry = {
-        countryName: countryInput.value,
-        yearVisited: Number(yearInput.value),
-        businessOrPleasure: businessOrPleasureSelector.value,
-        continentId: addContinentSelector.value
-    }
-    return newCountry;
+    else {
+        resetInputsAndErrors();
+        const newCountry = {
+            countryName: countryInput.value,
+            yearVisited: Number(yearInput.value),
+            businessOrPleasure: businessOrPleasureSelector.value,
+            continentId: addContinentSelector.value
+        }
+        return newCountry;
     }
 }
+//Lägger till nya landet i db.json
 async function addCountryToDb (newCountry){
     try {
         const response = await fetch("http://localhost:3000/countries/", {
@@ -93,3 +94,12 @@ async function addCountryToDb (newCountry){
     }
     
 }
+
+//Återställer inputfält och felmeddelanden
+function resetInputsAndErrors (){
+    dataError.textContent = "";
+    countryError.textContent = "";
+    yearError.textContent = "";
+    countryInput.value = "";
+    yearInput.value = "";
+};
