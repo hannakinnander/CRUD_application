@@ -1,14 +1,12 @@
 import { renderCountry } from "./renderCountry.js";
-import { getCountries } from "./script.js";
-import { showCountriesDiv } from "./script.js";
-import { dataError } from "./script.js";
+import { getCountries, getContinent } from "./crud.js";
+import { showCountriesDiv, dataError } from "./script.js";
 import { overlay } from "./handleCards.js"
 
 
 //Hämtar länder/resor och filtrerar ut på resornas continentId och världsdelarnas id.
 export async function showSpecificContinent (id){
     showCountriesDiv.innerHTML= "";
-    
     //Funktionen getCountries finns i script.js
     const countries = await getCountries();
     //Om fetchen misslyckats eller man får tillbaka en tom array skickas felmeddelande ut och funktionen avslutas
@@ -18,7 +16,7 @@ export async function showSpecificContinent (id){
     }
     else if (countries.length === 0){
         dataError.textContent = "Det finns inga sparade resor till denna världsdel";
-        return;
+        // return;
     }
     else{
         //Filtrerar ut resor där continentId är samma som världsdelens id
@@ -30,22 +28,7 @@ export async function showSpecificContinent (id){
     }
 };
 
-//Hämtar en världsdel utifrån id
-async function getContinent (id){
-    try {
-        const response = await fetch(`http://localhost:3000/continents/${id}`);
-        
-        if (!response.ok){
-            throw new Error("Kunde inte hämta resor");
-        }
-        const continent = await response.json();
-        return continent;
-    }
-    catch (error){
-        console.log("Kunde inte hämta continent");
-        return null;
-    }
-}
+
 //Visar information utifrån ett objekt (världsdel) genom att man får id från världsdelens namn
 //Körs om man trycker på världsdelens namn i kortet. Eventlistener skapas i renderCountry (där kortet skapas).
 export async function showContinentInformation(id) {

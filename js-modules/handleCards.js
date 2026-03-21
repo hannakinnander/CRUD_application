@@ -1,3 +1,4 @@
+import { showSpecificContinent } from "./continents.js";
 import { renderCountry } from "./renderCountry.js";
 import { checkContinentValue, currentContinentSelected, continentSelector} from "./script.js";
 import { showCountriesDiv } from "./script.js";
@@ -104,17 +105,16 @@ export function editCard (countryCard, country){
     closeButton.classList.add("closeEdit", "closeButton");
     closeButton.textContent = "↩";
     closeButton.addEventListener("click", async()=>{
-        currentContinentSelected = continentSelector.value;
-        countryCard.classList.remove("editMode");
         overlay.classList.add("hidden");
+        countryCard.classList.remove("editMode");
+        await checkContinentValue(currentContinentSelected);
     });
         
     const saveButton = document.createElement("button");
     saveButton.classList.add("cardButton", "saveChanges");
     saveButton.textContent = "Spara";
     saveButton.addEventListener("click", async() =>{
-        currentContinentSelected = continentSelector.value;
-        
+        // currentContinentSelected = continentSelector.value;
         const updatedCard = {
         id: country.id,
         countryName: countryInput.value,
@@ -122,15 +122,15 @@ export function editCard (countryCard, country){
         businessOrPleasure: businessOrPleasureSelector.value,
         continentId: continentSelectorEdit.value
         }
-        countryCard.classList.remove("editMode");
-        overlay.classList.add("hidden");
-
+        
         //Få det ändrade objektet
         const updatedData = await updateDb(country.id, updatedCard);
         if (updatedData === null){
             dataError.textContent = "Det gick inte ändra. Kontrollera server";
             return;
         }
+        countryCard.classList.remove("editMode");
+        overlay.classList.add("hidden");
         await checkContinentValue(currentContinentSelected);        
     });
 

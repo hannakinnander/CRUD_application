@@ -65,13 +65,13 @@ function checkInputs () {
         yearError.textContent = "Får inte lämnas tomt"       
     }
     else {
-        resetInputsAndErrors();
         const newCountry = {
             countryName: countryInput.value,
             yearVisited: Number(yearInput.value),
             businessOrPleasure: businessOrPleasureSelector.value,
             continentId: addContinentSelector.value
         }
+        resetInputsAndErrors();
         return newCountry;
     }
 }
