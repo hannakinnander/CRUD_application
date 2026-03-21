@@ -45,13 +45,6 @@
   ],
   "countries": [
     {
-      "id": "3cf5",
-      "countryName": "Australien",
-      "yearVisited": 2013,
-      "businessOrPleasure": "business",
-      "continentId": "6"
-    },
-    {
       "id": "b014",
       "countryName": "Spanien",
       "yearVisited": 2009,
@@ -69,7 +62,7 @@
       "id": "216d",
       "countryName": "Kenya",
       "yearVisited": 2017,
-      "businessOrPleasure": "business",
+      "businessOrPleasure": "pleasure",
       "continentId": "2"
     },
     {
@@ -101,18 +94,32 @@
       "continentId": "5"
     },
     {
-      "id": "cf14",
-      "countryName": "Thailand",
-      "yearVisited": 2025,
-      "businessOrPleasure": "pleasure",
-      "continentId": "1"
-    },
-    {
       "id": "37ce",
       "countryName": "Danmark",
       "yearVisited": 2020,
       "businessOrPleasure": "pleasure",
       "continentId": "5"
+    },
+    {
+      "id": "0da6",
+      "countryName": "Australien",
+      "yearVisited": 2011,
+      "businessOrPleasure": "pleasure",
+      "continentId": "6"
+    },
+    {
+      "id": "14a2",
+      "countryName": "Malaysia",
+      "yearVisited": 2017,
+      "businessOrPleasure": "pleasure",
+      "continentId": "1"
+    },
+    {
+      "id": "26ed",
+      "countryName": "Sydafrika",
+      "yearVisited": 2013,
+      "businessOrPleasure": "pleasure",
+      "continentId": "2"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
