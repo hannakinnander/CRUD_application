@@ -1,3 +1,4 @@
+import { renderCountry } from "./renderCountry.js";
 import { checkContinentValue } from "./script.js";
 import { dataError } from "./script.js";
 const countryInput = document.getElementById("countryInput");
@@ -6,23 +7,40 @@ const businessOrPleasureSelector = document.getElementById("businessOrPleasureSe
 const addContinentSelector = document.getElementById("addContinentSelector");
 export const countryError = document.querySelector(".countryError");
 const yearError = document.querySelector(".yearError");
+const saved = document.querySelector(".saved");
 
-//Ska köras på sparaknappen i script.js
+//Ska köras på sparaknappen i script.js. Tar med vilken världsdel man står i.
 export async function saveNewCountry (currentContinentSelected){
+
+    //Kontrollera inputs. Får tillbaka nya resan som objekt om alla inputs var okej.
     const newCountry = checkInputs();
     if (!newCountry){
         return;
     }
+    //Försöker lägga till nya landet till db.json
     try {
-        await addCountryToDb(newCountry);
-        await checkContinentValue(currentContinentSelected);
-    } catch (error) {
-        console.log(error);
-        const dataError = document.querySelector(".dataError");
-        dataError.textContent = "Failed to add country. Check if server is running.";
+        const addCountry = await addCountryToDb(newCountry);
+        //Får man tillbaka null så vet man att det inte gått bra. Då kastas fel.
+        if (addCountry === null){
+            throw new Error("Kunde inte spara resa");
+        }
+        //Om man står på världsdel som matchar kortet eller hade tryckt "visa alla" så målas kortet ut.
+        else if (newCountry.continentId === currentContinentSelected || currentContinentSelected === "all"){
+            saved.textContent = "Sparad!"
+            renderCountry(country);
+        }
+        else {
+            saved.textContent = "Sparad!"
+            return;
+        }
+    }
+    catch (error){
+        dataError.textContent = "Kunde inte spara resa. Saknar kontakt med servern."
+        return;
     }
 }
 
+//Kontrollerar det användaren har skrivit in och valt i selektorerna(ny resa)
 function checkInputs () {
     Number(yearInput.value);
     if (countryInput.value ==="" && isNaN(yearInput.value)){
@@ -66,12 +84,12 @@ async function addCountryToDb (newCountry){
         body: JSON.stringify(newCountry)
     });
     if (!response.ok) {
-        throw new Error(`Failed to add: ${response.status}`);
+        throw new Error("Kunde inte lägga till resa");
     }
+
     } 
     catch (error){
-        console.log(error);
-        throw error;  // Re-throw
+        return null;
     }
     
 }
