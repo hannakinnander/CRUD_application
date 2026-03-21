@@ -1,10 +1,11 @@
 import { renderCountry } from "./renderCountry.js";
-import { checkContinentValue } from "./script.js";
+import { checkContinentValue, currentContinentSelected, continentSelector} from "./script.js";
 import { showCountriesDiv } from "./script.js";
 import { dataError } from "./script.js";
 
-export const overlay = document.querySelector(".overlay");
 
+
+export const overlay = document.querySelector(".overlay");
 
 //Läggs i eventlistener för knappen som skapas i renderCountry
 export async function deleteCard (id){
@@ -13,26 +14,24 @@ export async function deleteCard (id){
        method: "DELETE" 
     });
     if (!response.ok) {
-        throw new Error(`Failed to delete: ${response.status}`);
+        throw new Error("Kunde inte radera");
     }
     const deletedCard = await response.json();
-    console.log(deletedCard);
     return deletedCard;
     }
     catch (error){
-        console.log(error);
-        throw error;  // Re-throw
+        return null;
     }
-    
-}
+};
 
-//Körs på Redigera-knappen som skapas i renderCountry.js
+//Körs på Redigera-knappen som skapas i renderCountry.js. Gör om kortet till "editmode".
+//Alla tidigare värden i kortet skrivs ut i inputs och selektorer
 export function editCard (countryCard, country){
     countryCard.innerHTML = "";
     countryCard.classList.add("editMode");
     overlay.classList.remove("hidden");
-    
-    //Ändra landet
+
+    //Element för titel/land
     const countryInput = document.createElement("input");
     countryInput.id ="editCountry";
     countryInput.value = country.countryName;
@@ -105,41 +104,34 @@ export function editCard (countryCard, country){
     closeButton.classList.add("closeEdit", "closeButton");
     closeButton.textContent = "↩";
     closeButton.addEventListener("click", async()=>{
-        showCountriesDiv.removeChild(countryCard);
+        currentContinentSelected = continentSelector.value;
         countryCard.classList.remove("editMode");
         overlay.classList.add("hidden");
-        await checkContinentValue();
- 
     });
         
     const saveButton = document.createElement("button");
     saveButton.classList.add("cardButton", "saveChanges");
     saveButton.textContent = "Spara";
     saveButton.addEventListener("click", async() =>{
+        currentContinentSelected = continentSelector.value;
         
-        console.log("KLICK");
-        try {
-            const updatedCard = {
-            id: country.id,
-            countryName: countryInput.value,
-            yearVisited: Number(yearVisitedInput.value),
-            businessOrPleasure: businessOrPleasureSelector.value,
-            continentId: continentSelectorEdit.value
+        const updatedCard = {
+        id: country.id,
+        countryName: countryInput.value,
+        yearVisited: Number(yearVisitedInput.value),
+        businessOrPleasure: businessOrPleasureSelector.value,
+        continentId: continentSelectorEdit.value
         }
         countryCard.classList.remove("editMode");
         overlay.classList.add("hidden");
 
         //Få det ändrade objektet
         const updatedData = await updateDb(country.id, updatedCard);
-        console.log(updatedData);
-        await checkContinentValue();        
+        if (updatedData === null){
+            dataError.textContent = "Det gick inte ändra. Kontrollera server";
+            return;
         }
-       catch (error){
-        console.log(error);
-        const dataError = document.querySelector(".dataError");
-        dataError.textContent = "Kunde inte ändra. Kontrollera server";
-       }
-        
+        await checkContinentValue(currentContinentSelected);        
     });
 
     //Lägger in elementen i sina parents
@@ -152,28 +144,23 @@ export function editCard (countryCard, country){
 };
 
 export async function updateDb(id, updatedCard) {
-    
     try {
-    const response = await fetch(`http://localhost:3000/countries/${id}`, {
-       method: "PUT",
-       headers: {
-        "Content-Type": "application/json"
-       },
-       body: JSON.stringify(updatedCard)
-       
-    });
-    if (!response.ok) {
-        throw new Error(`Failed to update: ${response.status}`);
-    }
-    const upDatedData = await response.json();
-    return upDatedData;
-    
+        const response = await fetch(`http://localhost:3000/countries/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedCard)
+        });
+        if (!response.ok) {
+            throw new Error("Kunde inte uppdatera kortet");
+        }
+        const upDatedData = await response.json();
+        return upDatedData;
     }
     catch (error) {
-        console.log(error);
-        throw error;  // Re-throw to be caught in save button
+        return null;
     }
-    
-}
+};
 
 

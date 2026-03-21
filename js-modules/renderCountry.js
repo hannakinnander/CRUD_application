@@ -3,6 +3,7 @@ import { editCard } from "./handleCards.js";
 import { showContinentInformation } from "./continents.js";
 import { currentContinentSelected } from "./script.js";
 import { showCountriesDiv } from "./script.js";
+import { dataError } from "./script.js";
 
 //Kallas på när man skapar kort i spara-knappen på addNewCountry
 export function renderCountry (country){
@@ -56,8 +57,11 @@ export function renderCountry (country){
     deleteButton.textContent = "Ta bort";
     deleteButton.addEventListener("click", async() => {
         const deletedCard = await deleteCard(country.id);
-        // await checkContinentValue();
-        // console.log(deletedCard);
+        if (deletedCard === null){
+            dataError.textContent = "Kunde inte radera. Kontrollera server";
+            return;
+        }
+        showCountriesDiv.removeChild(countryCard);
     });
 
     //Lägg till knapparna i behållaren
