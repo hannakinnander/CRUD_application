@@ -1,38 +1,29 @@
 import { saveNewCountry } from "./addNewCountry.js";
 import { showSpecificContinent } from "./continents.js";
 import { renderCountry } from "./renderCountry.js";
+import { getCountries } from "./crud.js";
 
+//Hämtar nödvändiga element
 export const continentSelector = document.getElementById("continentSelector");
 const saveDestinationButton = document.querySelector(".saveDestinationButton");
 export const dataError = document.querySelector(".dataError");
 const showAllButton = document.querySelector(".showAllButton");
-export let currentContinentSelected;
 export const showCountriesDiv = document.querySelector(".showCountriesDiv");
+
+export let currentContinentSelected;
 
 //Kör funktion för att spara kort, finns i addNewCountry-modulen
 saveDestinationButton.addEventListener("click", async()=> {
+    currentContinentSelected = continentSelector.value;
+    console.log(currentContinentSelected);
     await saveNewCountry(currentContinentSelected);
-})
+});
 
 showAllButton.addEventListener("click", async()=>{
-    currentContinentSelected = "all";
-    console.log(currentContinentSelected);
+    currentContinentSelected = "";
+    continentSelector.value = "";
     await showAllCountries();
-})
-
-
-export async function getCountries () {
-    try {
-        const response = await fetch ("http://localhost:3000/countries");
-        const countries = await response.json();
-        return countries;
-    }
-    catch {
-        dataError.textContent = "Kunde inte ladda resor";
-        return [];  // Return empty array to prevent errors
-    }
- 
-}
+});
 
 //Målar ut alla sparade resemål
 async function showAllCountries () {
@@ -40,17 +31,28 @@ async function showAllCountries () {
     //Får arrayen countries
     const countries = await getCountries();
 
-    //Loopa igenom hela arrayen
-    countries.forEach((country) =>{
+    //Om fetchen misslyckats eller man får tillbaka en tom array skickas felmeddelande ut och funktionen avslutas
+    if (countries === null){
+        dataError.textContent = "Kunde inte ladda resor. Kontrollera server.";
+        return;
+    }
+    else if (countries.length === 0){
+        dataError.textContent = "Det finns inga sparade resor";
+        return;
+    }
+    else{
+        //Loopa igenom hela arrayen och måla ut varje kort med hjälp av renderCountry
+        countries.forEach((country) =>{
         renderCountry(country);
-    })
+        });
+    } 
 }
 
-// //Kollar vilken inställning man står på i världsdelsselektorn och visar kort utifrån det
+// //Kollar vilken inställning man står på i världsdelsselektorn och visar kort utifrån det.
+//Körs vid ändring i selektorn och när man uppdaterar kort från editmode.
 export async function checkContinentValue (currentContinentSelected) {
-    currentContinentSelected = continentSelector.value;
     
-    if (currentContinentSelected === "all"){
+    if (currentContinentSelected === ""){
         await showAllCountries();
     }
     else{
@@ -59,8 +61,7 @@ export async function checkContinentValue (currentContinentSelected) {
 }
 
 continentSelector.addEventListener("change", async() =>{
-    console.log("ändrat state");
     currentContinentSelected = continentSelector.value;
-    await checkContinentValue();
+    await checkContinentValue(currentContinentSelected);
 });
 

@@ -46,10 +46,10 @@
   "countries": [
     {
       "id": "3cf5",
-      "countryName": "Australien",
+      "countryName": "Algeriet",
       "yearVisited": 2013,
-      "businessOrPleasure": "business",
-      "continentId": "6"
+      "businessOrPleasure": "pleasure",
+      "continentId": "2"
     },
     {
       "id": "b014",
@@ -57,27 +57,6 @@
       "yearVisited": 2009,
       "businessOrPleasure": "pleasure",
       "continentId": "5"
-    },
-    {
-      "id": "9293",
-      "countryName": "Argentina",
-      "yearVisited": 2018,
-      "businessOrPleasure": "pleasure",
-      "continentId": "4"
-    },
-    {
-      "id": "216d",
-      "countryName": "Kenya",
-      "yearVisited": 2017,
-      "businessOrPleasure": "business",
-      "continentId": "2"
-    },
-    {
-      "id": "e909",
-      "countryName": "Vietnam",
-      "yearVisited": 2025,
-      "businessOrPleasure": "pleasure",
-      "continentId": "1"
     },
     {
       "id": "a360",
@@ -92,6 +71,55 @@
       "yearVisited": 2021,
       "businessOrPleasure": "business",
       "continentId": "7"
+    },
+    {
+      "id": "5aeb",
+      "countryName": "Ghana",
+      "yearVisited": 2013,
+      "businessOrPleasure": "business",
+      "continentId": "2"
+    },
+    {
+      "id": "e025",
+      "countryName": "Kina",
+      "yearVisited": 2017,
+      "businessOrPleasure": "pleasure",
+      "continentId": "1"
+    },
+    {
+      "id": "257f",
+      "countryName": "Brasilien",
+      "yearVisited": 2008,
+      "businessOrPleasure": "pleasure",
+      "continentId": "4"
+    },
+    {
+      "id": "ce70",
+      "countryName": "Japan",
+      "yearVisited": 2023,
+      "businessOrPleasure": "pleasure",
+      "continentId": "1"
+    },
+    {
+      "id": "aaf7",
+      "countryName": "Nya Zeeland",
+      "yearVisited": 2012,
+      "businessOrPleasure": "business",
+      "continentId": "6"
+    },
+    {
+      "id": "bfe9",
+      "countryName": "Australien",
+      "yearVisited": 2011,
+      "businessOrPleasure": "pleasure",
+      "continentId": "6"
+    },
+    {
+      "id": "5561",
+      "countryName": "Island",
+      "yearVisited": 2010,
+      "businessOrPleasure": "business",
+      "continentId": "5"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
