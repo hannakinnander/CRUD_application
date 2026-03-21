@@ -29,7 +29,7 @@ export async function saveNewCountry (currentContinentSelected){
             throw new Error("Kunde inte spara resa");
         }
         //Om man står på världsdel som matchar kortet eller hade tryckt "visa alla" så målas kortet ut.
-        else if (addedCountry.continentId === currentContinentSelected) {
+        else if (addedCountry.continentId === currentContinentSelected || currentContinentSelected === "all") {
             saved.textContent = "Sparad!"
             setTimeout(()=>{
                 saved.textContent = "";

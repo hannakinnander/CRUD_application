@@ -7,22 +7,19 @@ import { getCountries } from "./crud.js";
 export const continentSelector = document.getElementById("continentSelector");
 const saveDestinationButton = document.querySelector(".saveDestinationButton");
 export const dataError = document.querySelector(".dataError");
-const showAllButton = document.querySelector(".showAllButton");
 export const showCountriesDiv = document.querySelector(".showCountriesDiv");
 
-export let currentContinentSelected;
+export let currentContinentSelected = "all";
+
+if (currentContinentSelected === "all"){
+    await showAllCountries();
+}
 
 //Kör funktion för att spara kort, finns i addNewCountry-modulen
 saveDestinationButton.addEventListener("click", async()=> {
     currentContinentSelected = continentSelector.value;
     console.log(currentContinentSelected);
     await saveNewCountry(currentContinentSelected);
-});
-
-showAllButton.addEventListener("click", async()=>{
-    currentContinentSelected = "";
-    continentSelector.value = "";
-    await showAllCountries();
 });
 
 //Målar ut alla sparade resemål
@@ -52,7 +49,7 @@ async function showAllCountries () {
 //Körs vid ändring i selektorn och när man uppdaterar kort från editmode.
 export async function checkContinentValue (currentContinentSelected) {
     
-    if (currentContinentSelected === ""){
+    if (currentContinentSelected === "all"){
         await showAllCountries();
     }
     else{
