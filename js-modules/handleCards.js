@@ -2,7 +2,6 @@ import { renderCountry } from "./renderCountry.js";
 import { checkContinentValue } from "./script.js";
 import { showCountriesDiv } from "./script.js";
 import { dataError } from "./script.js";
-import { continentSelector } from "./script.js";
 
 const overlay = document.querySelector(".overlay");
 
@@ -109,8 +108,7 @@ export function editCard (countryCard, country){
         showCountriesDiv.removeChild(countryCard);
         countryCard.classList.remove("editMode");
         overlay.classList.add("hidden");
-        // Pass the current continent selector value to stay filtered
-        await checkContinentValue(continentSelector.value);
+        await checkContinentValue();
  
     });
         
@@ -134,8 +132,7 @@ export function editCard (countryCard, country){
         //Få det ändrade objektet
         const updatedData = await updateDb(country.id, updatedCard);
         console.log(updatedData);
-        // Pass the current continent selector value to stay filtered
-        await checkContinentValue(continentSelector.value);        
+        await checkContinentValue();        
         }
        catch (error){
         console.log(error);

@@ -4,7 +4,7 @@ const countryInput = document.getElementById("countryInput");
 const yearInput = document.getElementById("yearInput");
 const businessOrPleasureSelector = document.getElementById("businessOrPleasureSelector");
 const addContinentSelector = document.getElementById("addContinentSelector");
-const countryError = document.querySelector(".countryError");
+export const countryError = document.querySelector(".countryError");
 const yearError = document.querySelector(".yearError");
 
 //Ska köras på sparaknappen i script.js
