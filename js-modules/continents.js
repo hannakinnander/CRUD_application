@@ -14,20 +14,24 @@ export async function showSpecificContinent (id){
         dataError.textContent = "Kunde inte ladda resor. Kontrollera server.";
         return;
     }
-    else if (countries.length === 0){
-        dataError.textContent = "Det finns inga sparade resor till denna världsdel";
-        // return;
-    }
+    
     else{
         //Filtrerar ut resor där continentId är samma som världsdelens id
         const specificCountries = countries.filter((country) => country.continentId === id);
-        //Loopa igenom hela arrayen och måla ut varje kort med hjälp av renderCountry
-        specificCountries.forEach((country) =>{
-        renderCountry(country);
-        });
+        if (specificCountries.length ===0)
+        {
+            dataError.textContent = "Det finns inga sparade resor till denna världsdel";
+            return;
+        }
+        else{
+            //Loopa igenom hela arrayen och måla ut varje kort med hjälp av renderCountry
+            specificCountries.forEach((country) =>{
+            renderCountry(country);
+            });
+        }
+
     }
 };
-
 
 //Visar information utifrån ett objekt (världsdel) genom att man får id från världsdelens namn
 //Körs om man trycker på världsdelens namn i kortet. Eventlistener skapas i renderCountry (där kortet skapas).

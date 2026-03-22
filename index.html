@@ -9,7 +9,9 @@
 </head>
 <body>
     <header>
-        <h1>Mina resor ☀️✈️</h1>
+        <div class="headerDiv">
+            <h1>Mina resor ☀️✈️</h1>
+        </div>
     </header>
     <div class="overlay hidden"></div>
         <main>
@@ -31,7 +33,6 @@
                             <option value="business">Business</option>
                             <option value="pleasure">Pleasure</option>
                         </select>
-                        
                     </div>
                     <div class="makeFlexColumn">
                         <label for="addContinentSelector">Världsdel: </label>
@@ -46,23 +47,23 @@
                         </select>
                     </div>
                     <div class="makeFlexColumn">
-                        <button type="button" class="saveDestinationButton">Spara</button>
                         <p class="saved"></p>
+                        <button type="button" class="saveDestinationButton">Spara</button>
+                        
                     </div>
-                    
                 </div>
-            <div class="makeFlex">
-                <select id="continentSelector">
-                    <option value="all">Visa alla</option>
-                    <option value="1">Asien</option>
-                    <option value="2">Afrika</option>
-                    <option value="3">Nordamerika</option>
-                    <option value="4">Sydamerika</option>
-                    <option value="5">Europa</option>
-                    <option value="6">Oceanien</option>
-                    <option value="7">Antarktis</option>
-                </select>
-            </div>
+                <div class="makeFlex">
+                    <select id="continentSelector">
+                        <option value="all">Visa alla</option>
+                        <option value="1">Asien</option>
+                        <option value="2">Afrika</option>
+                        <option value="3">Nordamerika</option>
+                        <option value="4">Sydamerika</option>
+                        <option value="5">Europa</option>
+                        <option value="6">Oceanien</option>
+                        <option value="7">Antarktis</option>
+                    </select>
+                </div>
             </div>
             <h3 class="dataError"></h3>
             <div class="showCountriesDiv"></div>
