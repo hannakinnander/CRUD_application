@@ -102,7 +102,6 @@ export function renderCountry (country){
         default: 
         break;
     }
-
         //Lägger in alla element i kortet
         countryCard.append(countryName, yearVisited, businessOrPleasure, continentInfo, buttonSection);
 

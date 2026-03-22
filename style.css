@@ -37,7 +37,7 @@ main {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
 /*STYLING FÖR MENYN*/
@@ -47,7 +47,6 @@ main {
     border-radius: 5px;
     max-width: 40rem;
     gap: 1rem;
-    align-self: flex-start;
 }
 /*LÄGGA TILL NYTT KORT*/
 .addDestinationField {
@@ -88,6 +87,11 @@ main {
 .saved {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: small;
+    color:rgb(9, 148, 20);
+    /* background-color: rgb(9, 148, 20);
+    border-radius: 5px;
+    padding: 2px;
+    text-align: center; */
 }
 
 .makeFlexColumn {
@@ -150,10 +154,7 @@ main {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    position: relative;
-    max-width: 100vw;
-    justify-content:flex-start;
-    align-self: flex-start;
+    min-width: 90vw;
 }
 
 .countryCard {
@@ -329,10 +330,10 @@ background-color: rgba(253, 236, 0, 0.445);
     }
 }
 @media (max-width: 460px) {
+
     .addDestinationField {
-        width: 25rem;
+        width: 15rem;
         justify-content: flex-start;
-        
     }
     .addDestinationField select {
         flex: 1;
@@ -342,5 +343,14 @@ background-color: rgba(253, 236, 0, 0.445);
     }
     .informationDiv{
         min-width: 90vw;
+    }
+    .countryCard p {
+    font-size: 1.5rem;
+    }
+    .countryCard h2{
+        font-size: 2rem;
+    }
+    .countryCard button {
+        font-size: 1rem;
     }
 }

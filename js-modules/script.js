@@ -18,7 +18,6 @@ if (currentContinentSelected === "all"){
 //Kör funktion för att spara kort, finns i addNewCountry-modulen
 saveDestinationButton.addEventListener("click", async()=> {
     currentContinentSelected = continentSelector.value;
-    console.log(currentContinentSelected);
     await saveNewCountry(currentContinentSelected);
 });
 
@@ -48,7 +47,7 @@ async function showAllCountries () {
 // //Kollar vilken inställning man står på i världsdelsselektorn och visar kort utifrån det.
 //Körs vid ändring i selektorn och när man uppdaterar kort från editmode.
 export async function checkContinentValue (currentContinentSelected) {
-    
+    dataError.textContent = "";
     if (currentContinentSelected === "all"){
         await showAllCountries();
     }
@@ -56,7 +55,6 @@ export async function checkContinentValue (currentContinentSelected) {
         await showSpecificContinent(currentContinentSelected);
     }
 }
-
 continentSelector.addEventListener("change", async() =>{
     currentContinentSelected = continentSelector.value;
     await checkContinentValue(currentContinentSelected);

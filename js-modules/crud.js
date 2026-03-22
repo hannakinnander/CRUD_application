@@ -72,7 +72,6 @@ export async function addCountryToDb (newCountry){
         const addedCountry = await response.json();
         return addedCountry;
     } 
-
     catch (error){
         return null;
     }

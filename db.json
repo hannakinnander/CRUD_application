@@ -80,13 +80,6 @@
       "continentId": "3"
     },
     {
-      "id": "c75e",
-      "countryName": "Antarktis",
-      "yearVisited": 2021,
-      "businessOrPleasure": "business",
-      "continentId": "7"
-    },
-    {
       "id": "72d1",
       "countryName": "Grekland",
       "yearVisited": 2009,
@@ -97,7 +90,7 @@
       "id": "37ce",
       "countryName": "Danmark",
       "yearVisited": 2020,
-      "businessOrPleasure": "pleasure",
+      "businessOrPleasure": "business",
       "continentId": "5"
     },
     {

@@ -13,7 +13,6 @@ const saved = document.querySelector(".saved");
 
 //Ska köras på sparaknappen i script.js. Tar med vilken världsdel man står i.
 export async function saveNewCountry (currentContinentSelected){
-    console.log(currentContinentSelected);
     //Kontrollera inputs. Får tillbaka nya resan som objekt om alla inputs var okej.
     const newCountry = checkInputs();
     if (!newCountry){
@@ -23,8 +22,6 @@ export async function saveNewCountry (currentContinentSelected){
     try {
         const addedCountry = await addCountryToDb(newCountry);
         //Får man tillbaka null så vet man att det inte gått bra. Då kastas fel.
-        console.log("Added continentid:" + addedCountry.continentId);
-        console.log("Currentcontinent:" + currentContinentSelected);
         if (addedCountry === null){
             throw new Error("Kunde inte spara resa");
         }
@@ -65,14 +62,16 @@ function checkInputs () {
         }
 
     else if (countryInput.value ===""){
-            countryError.textContent = "Får inte lämnas tomt"
-            yearError.textContent="";
+        countryError.textContent = "Får inte lämnas tomt"
+        yearError.textContent="";
     }
     else if(isNaN(yearInput.value)){
         yearError.textContent = "Måste vara siffror"
+        countryInput.textContent = "";
     }
     else if (yearInput.value ===""){
-        yearError.textContent = "Får inte lämnas tomt"       
+        yearError.textContent = "Får inte lämnas tomt"
+        countryInput.textContent = "";       
     }
     else {
         const newCountry = {
